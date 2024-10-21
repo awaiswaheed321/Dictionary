@@ -1,0 +1,24 @@
+{
+  "name": "dictionary",
+  "version": "1.0.0",
+  "description": "WAP Final Project",
+  "private": true,
+  "workspaces": [
+    "packages/client",
+    "packages/server"
+  ],
+  "scripts": {
+    "start": "npm-run-all --parallel start:client start:server",
+    "start:client": "npm run start --workspace=client",
+    "start:server": "npm run start --workspace=server",
+    "build": "npm-run-all build:client build:server",
+    "build:client": "npm run build --workspace=client",
+    "build:server": "npm run build --workspace=server"
+  },
+  "keywords": [],
+  "author": "awaiswaheed321@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}
