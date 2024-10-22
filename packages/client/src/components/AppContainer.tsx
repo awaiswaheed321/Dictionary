@@ -73,7 +73,7 @@ export default function AppContainer(props: Props) {
         {/* Footer at the bottom */}
         <AppBar
           position="static"
-          sx={{ top: "auto", bottom: 0, backgroundColor: "#335c67" }}
+          sx={{ top: "auto", bottom: 0, backgroundColor: "#335C67" }}
         >
           <Toolbar>
             <Typography
