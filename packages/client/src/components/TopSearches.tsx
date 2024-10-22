@@ -20,6 +20,7 @@ export default function TopSearches() {
   }
 
   const [counts, setCounts] = useState<Count[]>([]);
+  const [timer, setTimer] = useState(25);
 
   const getData = async () => {
     try {
@@ -27,7 +28,6 @@ export default function TopSearches() {
         `${Constants.BASE_PATH}${Constants.TOP_SEARCHES_URL}`,
         Constants.HOST_NAME
       );
-      console.log(url);
       const response = await fetch(url.toString(), {
         method: "GET",
         headers: {
@@ -51,13 +51,18 @@ export default function TopSearches() {
   };
 
   useEffect(() => {
+    const timerInterval = setInterval(() => {
+      setTimer((t) => {
+        if (t === 0) {
+          getData();
+          return 25;
+        }
+        return t - 1;
+      });
+    }, 1000);
     getData();
-    const intervalId = setInterval(() => {
-      getData();
-    }, 25000);
-
     return () => {
-      clearInterval(intervalId);
+      clearInterval(timerInterval);
     };
   }, []);
 
@@ -68,20 +73,34 @@ export default function TopSearches() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        height: "100vh",
+        height: "80vh",
       }}
     >
-      <Typography variant="h5" color="inherit" sx={{ marginBottom: 2 }}>
-        Top Searches
-      </Typography>
+      <Container
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
+        }}
+      >
+        <Typography variant="h5" color="inherit">
+          Top Searches
+          <Typography variant="subtitle2" color="inherit">
+            Refresh In {timer} seconds
+          </Typography>
+        </Typography>
+      </Container>
+
       <TableContainer
         component={Card}
         sx={{
           width: "100%",
-          maxWidth: 900, // Increased width to make the table wider
-          overflowX: "auto", // Allow horizontal scrolling
-          overflowY: "auto", // Allow vertical scrolling
-          maxHeight: "70vh", // Restrict the height to enable vertical scrolling if necessary
+          maxWidth: 900,
+          overflowX: "auto",
+          overflowY: "auto",
+          maxHeight: "70vh",
         }}
       >
         <Table sx={{ minWidth: 750 }} aria-label="simple table">
@@ -89,19 +108,19 @@ export default function TopSearches() {
             <TableRow>
               <TableCell
                 align="center"
-                sx={{ backgroundColor: "#335C67", color: "#fff", width: "10%" }}
+                sx={{ backgroundColor: "#335C67", color: "#fff", width: "20%" }}
               >
                 Sr. #
               </TableCell>
               <TableCell
                 align="center"
-                sx={{ backgroundColor: "#335C67", color: "#fff", width: "45%" }}
+                sx={{ backgroundColor: "#335C67", color: "#fff", width: "40%" }}
               >
                 Word
               </TableCell>
               <TableCell
                 align="center"
-                sx={{ backgroundColor: "#335C67", color: "#fff", width: "45%" }}
+                sx={{ backgroundColor: "#335C67", color: "#fff", width: "40%" }}
               >
                 Number of Searches
               </TableCell>
