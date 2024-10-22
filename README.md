@@ -9,6 +9,7 @@ Welcome to the Dictionary project! This monorepo contains both the frontend and 
 - [Getting Started](#getting-started)
 - [Running the Application](#running-the-application)
 - [API Documentation](#api-documentation)
+- [Swagger API Documentation](#swagger-api-documentation)
 
 ## Features
 
@@ -43,16 +44,25 @@ Make sure you have the following installed:
 
 ## Running the Application
 1. Navigate to the root directory.
-2. Install the dependencies: npm install
-3. Run project: npm start
+2. Install the dependencies: `npm install`
+3. Run project: `npm start`
 
-The frontend will be running on http://localhost:3000.
-The backend will be running on http://localhost:3001.
+The frontend will be running on `http://localhost:3000`.
+The backend will be running on `http://localhost:3001`.
 
 ## API Documentation
 1. **GET api/v1/dictionary/:word** : Search a word
-2. **GET api/v1/dictionay/top** : Get top 10 seearched words
+2. **GET api/v1/dictionary/top** : Get top 10 searched words
 
-Example Requests
-1. curl -X GET http://localhost:3001/api/v1/dictionary/hello
-2. curl -X GET http://localhost:3001/api/v1/dictionary/top
+### Example Requests
+1. `curl -X GET http://localhost:3001/api/v1/dictionary/hello`
+2. `curl -X GET http://localhost:3001/api/v1/dictionary/top`
+
+## Swagger API Documentation
+
+To view the interactive API documentation using Swagger, navigate to `http://localhost:3001/api-docs` in your web browser. This will provide a user-friendly interface to explore and test the available API endpoints.
+
+### Swagger Features
+- **Interactive UI:** Easily test API endpoints directly from the browser.
+- **Auto-generated Documentation:** The API documentation is automatically generated based on the defined endpoints and their descriptions.
+- **Request and Response Examples:** See examples of requests and responses for each endpoint.
