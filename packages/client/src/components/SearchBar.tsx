@@ -1,14 +1,9 @@
-import TextField from "@mui/material/TextField";
+import { CircularProgress, Grid2 } from "@mui/material";
 import Button from "@mui/material/Button";
-import { Grid2 } from "@mui/material";
+import TextField from "@mui/material/TextField";
+import { SearchBarProps } from "../interfaces/Interfaces";
 
-interface Props {
-  word: string;
-  setWord: React.Dispatch<React.SetStateAction<string>>;
-  handleClick: () => void;
-}
-
-export default function SearchBar(props: Props) {
+export default function SearchBar(props: SearchBarProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     props.setWord(e.target.value);
   };
@@ -35,6 +30,7 @@ export default function SearchBar(props: Props) {
           Search Word
         </Button>
       </Grid2>
+      {props.isCircularOpen && <CircularProgress />}
     </Grid2>
   );
 }

@@ -1,11 +1,3 @@
-import { useEffect, useState } from "react";
-import Constants from "../Constants/Constants";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
 import {
   Box,
   Card,
@@ -13,18 +5,17 @@ import {
   Container,
   Typography,
 } from "@mui/material";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import { useEffect, useState } from "react";
+import Constants from "../Constants/Constants";
+import { Count, TopSearchesProps } from "../interfaces/Interfaces";
 
-interface Count {
-  word: {
-    id: number;
-    word: string;
-    wordType: string;
-    definition: string;
-  };
-  count: number;
-}
-
-export default function TopSearches() {
+export default function TopSearches(props: TopSearchesProps) {
   const [counts, setCounts] = useState<Count[]>([]);
   const [timer, setTimer] = useState(25);
   const [progress, setProgress] = useState(0);
@@ -46,13 +37,23 @@ export default function TopSearches() {
         const data = await response.json();
         setCounts(data);
       } else {
-        console.log("Error in fetching data");
+        console.log();
+        props.setSnackProps({
+          message: "Error in fetching data",
+          open: true,
+        });
       }
     } catch (error: unknown) {
       if (error instanceof Error) {
-        alert(`Fetch error: ${error.message}`);
+        props.setSnackProps({
+          message: `Fetch error: ${error.message}`,
+          open: true,
+        });
       } else {
-        alert("Fetch error: An unknown error occurred");
+        props.setSnackProps({
+          message: `Fetch error: An unknown error occurred`,
+          open: true,
+        });
       }
     }
   };

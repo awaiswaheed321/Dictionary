@@ -1,27 +1,16 @@
-import { useState } from "react";
-import {
-  Card,
-  CardContent,
-  Typography,
-  CardActions,
-  Button,
-  IconButton,
-} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import {
+    Button,
+    Card,
+    CardActions,
+    CardContent,
+    IconButton,
+    Typography,
+} from "@mui/material";
+import { useState } from "react";
+import { SearchCardProps } from "../interfaces/Interfaces";
 
-interface Entry {
-  id: number;
-  word: string;
-  wordType: string;
-  definition: string;
-}
-
-interface Props {
-  entries: Entry[];
-  closeCard: () => void;
-}
-
-export default function WordCard({ entries, closeCard }: Props) {
+export default function WordCard({ entries, closeCard }: SearchCardProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Function to go to the next entry

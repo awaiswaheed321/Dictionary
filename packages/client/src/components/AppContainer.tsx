@@ -1,21 +1,17 @@
-import * as React from "react";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import CssBaseline from "@mui/material/CssBaseline";
-import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
+import CssBaseline from "@mui/material/CssBaseline";
 import Fab from "@mui/material/Fab";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Fade from "@mui/material/Fade";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import useScrollTrigger from "@mui/material/useScrollTrigger";
+import * as React from "react";
+import { AppContainerProps } from "../interfaces/Interfaces";
 
-interface Props {
-  window?: () => Window;
-  children?: React.ReactNode;
-}
-
-function ScrollTop(props: Props) {
+function ScrollTop(props: AppContainerProps) {
   const { children, window } = props;
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
@@ -48,7 +44,7 @@ function ScrollTop(props: Props) {
   );
 }
 
-export default function AppContainer(props: Props) {
+export default function AppContainer(props: AppContainerProps) {
   return (
     <React.Fragment>
       <CssBaseline />
