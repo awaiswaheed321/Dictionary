@@ -6,5 +6,6 @@
     "moduleResolution": "node",
     "target": "ESNext",
     "module": "CommonJS"
-  }
+  },
+  "exclude": ["data/**/*"]
 }
