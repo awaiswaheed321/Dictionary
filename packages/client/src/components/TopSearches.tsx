@@ -87,9 +87,9 @@ export default function TopSearches() {
       >
         <Typography variant="h5" color="inherit">
           Top Searches
-          <Typography variant="subtitle2" color="inherit">
-            Refresh In {timer} seconds
-          </Typography>
+        </Typography>
+        <Typography variant="subtitle2" color="inherit">
+          Refresh In {timer} seconds
         </Typography>
       </Container>
 

@@ -53,7 +53,9 @@ export default function AppContainer(props: Props) {
     <React.Fragment>
       <CssBaseline />
       {/* Main layout container with flexbox */}
-      <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+      <Box
+        sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+      >
         {/* AppBar at the top */}
         <AppBar sx={{ backgroundColor: "#335c67" }}>
           <Toolbar>
@@ -62,14 +64,15 @@ export default function AppContainer(props: Props) {
             </Typography>
           </Toolbar>
         </AppBar>
+
         <Toolbar id="back-to-top-anchor" />
-        
+
         {/* Main content container */}
         <Container sx={{ flexGrow: 1, my: 2 }}>
           {/* Children content will go here */}
           {props.children}
         </Container>
-        
+
         {/* Footer at the bottom */}
         <AppBar
           position="static"
