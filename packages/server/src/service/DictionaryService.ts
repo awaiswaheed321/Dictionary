@@ -1,7 +1,7 @@
 import { Database } from "sqlite3";
 import DB from "../database/DB";
-import Entry from "../entity/Entry";
 import Count from "../entity/Count";
+import Entry from "../entity/Entry";
 
 const DictionaryService = {
   searchWord: (word: string): Promise<Entry[]> => {

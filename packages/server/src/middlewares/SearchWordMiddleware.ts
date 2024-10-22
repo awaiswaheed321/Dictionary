@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction } from "express";
-import ApiError from "../error/ApiError";
+import { NextFunction, Request, Response } from "express";
 import Entry from "../entity/Entry";
+import ApiError from "../error/ApiError";
 import DictionaryService from "../service/DictionaryService";
 
 const SearchWordMiddleware = async (

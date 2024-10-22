@@ -1,6 +1,6 @@
+import { join } from "path";
 import { Database } from "sqlite3";
 import Constants from "../constants/Constants";
-import { join } from "path";
 
 class DB {
   private static instance: Database | null = null;

@@ -1,7 +1,6 @@
-import { Request, Response, NextFunction } from "express";
-import Entry from "../entity/Entry";
-import DictionaryService from "../service/DictionaryService";
+import { NextFunction, Request, Response } from "express";
 import Count from "../entity/Count";
+import DictionaryService from "../service/DictionaryService";
 
 const TopSearchesMiddleware = async (
   req: Request,

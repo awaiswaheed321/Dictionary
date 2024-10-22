@@ -1,13 +1,14 @@
-import express from "express";
-import DB from "./database/DB";
-import ErrorHandlingMiddleware from "./middlewares/ErrorHandlingMiddleware";
-import LoggerMiddleware from "./middlewares/LoggerMiddleware";
-import DictionaryRouter from "./route/DictionaryRouter";
-import Constants from "./constants/Constants";
 import cors from "cors";
+import express from "express";
 import rateLimit from "express-rate-limit";
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
+import Constants from "./constants/Constants";
+import DB from "./database/DB";
+import ErrorHandlingMiddleware from "./middlewares/ErrorHandlingMiddleware";
+import RequestLoggerMiddleware from "./middlewares/RequestLoggerMiddleware";
+import ResponseLoggerMiddleware from "./middlewares/ResponseLoggerMiddleware";
+import DictionaryRouter from "./route/DictionaryRouter";
 import SwaggerOptions from "./swagger/SwaggerOptions";
 
 const limiter = rateLimit({
@@ -29,7 +30,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-app.use(LoggerMiddleware);
+app.use(RequestLoggerMiddleware);
+app.use(ResponseLoggerMiddleware);
 app.use(Constants.API_BASE_PATH, DictionaryRouter);
 app.use(ErrorHandlingMiddleware);
 
