@@ -11,7 +11,6 @@ class DB {
   public static initialize(): void {
     if (!DB.instance) {
       const dbPath = join(__dirname, Constants.DATABASE_FILE_PATH);
-      console.log(dbPath);
       DB.instance = new Database(dbPath, (err) => {
         if (err) {
           console.error("Could not open database:", err.message);
