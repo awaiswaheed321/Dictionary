@@ -56,13 +56,3 @@ The backend will be running on http://localhost:3001.
 Example Requests
 1. curl -X GET http://localhost:3001/api/v1/dictionary/hello
 2. curl -X GET http://localhost:3001/api/v1/dictionary/top
-
-
-
-
-
-
-
-
-
-
