@@ -3,7 +3,8 @@ import DictionaryController from "../controller/DictionaryController";
 
 const DictionaryRouter = Router();
 
-DictionaryRouter.route("/:word").get(DictionaryController.searchWord);
 DictionaryRouter.route("/top").get(DictionaryController.getTopSearches);
+DictionaryRouter.route("/:word").get(DictionaryController.searchWord);
+
 
 export default DictionaryRouter;

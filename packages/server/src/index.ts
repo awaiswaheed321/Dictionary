@@ -5,6 +5,13 @@ import LoggerMiddleware from "./middlewares/LoggerMiddleware";
 import DictionaryRouter from "./route/DictionaryRouter";
 import Constants from "./constants/Constants";
 import cors from "cors";
+import rateLimit from "express-rate-limit";
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  message: "Too many requests, please try again later.",
+});
 
 const app = express();
 app.set("port", process.env.PORT || 3001);
@@ -12,6 +19,7 @@ const PORT = app.get("port");
 
 DB.initialize();
 
+app.use(limiter);
 app.use(cors());
 app.use(express.json());
 

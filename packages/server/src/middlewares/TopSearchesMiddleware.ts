@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import Entry from "../entity/Entry";
 import DictionaryService from "../service/DictionaryService";
+import Count from "../entity/Count";
 
 const TopSearchesMiddleware = async (
   req: Request,
@@ -8,7 +9,7 @@ const TopSearchesMiddleware = async (
   next: NextFunction
 ) => {
   try {
-    const topEntries: Entry[] = await DictionaryService.getTopSearches();
+    const topEntries: Count[] = await DictionaryService.getTopSearches();
 
     if (topEntries.length === 0) {
       res.sendStatus(204);

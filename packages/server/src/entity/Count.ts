@@ -1,21 +1,19 @@
+import Entry from "./Entry";
+
 export default class Count {
-  private word: string;
+  private word: Entry;
   private count: number;
 
-  constructor(word: string, count: number) {
+  constructor(word: Entry, count: number) {
     this.word = word;
     this.count = count;
   }
 
-  getWord(): string {
+  getWord(): Entry {
     return this.word;
   }
 
   getCount(): number {
     return this.count;
-  }
-
-  incrementCount(): void {
-    this.count++;
   }
 }

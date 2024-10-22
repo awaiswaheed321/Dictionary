@@ -18,6 +18,7 @@ const insertEntriesFromJson = async (
     // Step 1: Create the tables if it doesn't exist
     const createTableQuery = `
       CREATE TABLE IF NOT EXISTS entries (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         word TEXT NOT NULL,
         wordtype TEXT,
         definition TEXT NOT NULL
@@ -33,10 +34,11 @@ const insertEntriesFromJson = async (
     });
 
     const createCountTableQuery = `
-        CREATE TABLE IF NOT EXISTS count (
-            word TEXT NOT NULL,
-            count INTEGER
-        );
+      CREATE TABLE IF NOT EXISTS count (
+        id INTEGER PRIMARY KEY,
+        count INTEGER NOT NULL,
+        FOREIGN KEY (id) REFERENCES entries (id) ON DELETE CASCADE
+      );
     `;
 
     db.run(createCountTableQuery, (err) => {
@@ -79,7 +81,12 @@ const insertEntriesFromJson = async (
       });
 
       // Step 7: Commit the transaction
-      stmt.finalize();
+      stmt.finalize((err) => {
+        if (err) {
+          console.error("Error finalizing statement:", err.message);
+        }
+      });
+
       db.run("COMMIT;", (err) => {
         if (err) {
           console.error("Error committing transaction:", err.message);
@@ -101,6 +108,7 @@ const insertEntriesFromJson = async (
     });
   }
 };
+
 // Usage example
 const dbFilePath = "./dictionary.db";
 const jsonFilePath = "./englishdictionary.json";
