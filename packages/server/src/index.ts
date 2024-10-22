@@ -6,12 +6,17 @@ import DictionaryRouter from "./route/DictionaryRouter";
 import Constants from "./constants/Constants";
 import cors from "cors";
 import rateLimit from "express-rate-limit";
+import swaggerJsdoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
+import SwaggerOptions from "./swagger/SwaggerOptions";
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
   message: "Too many requests, please try again later.",
 });
+
+const swaggerDocs = swaggerJsdoc(SwaggerOptions);
 
 const app = express();
 app.set("port", process.env.PORT || 3001);
@@ -23,6 +28,7 @@ app.use(limiter);
 app.use(cors());
 app.use(express.json());
 
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use(LoggerMiddleware);
 app.use(Constants.API_BASE_PATH, DictionaryRouter);
 app.use(ErrorHandlingMiddleware);

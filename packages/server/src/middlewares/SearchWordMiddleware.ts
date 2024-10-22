@@ -17,7 +17,7 @@ const SearchWordMiddleware = async (
     const entries: Entry[] = await DictionaryService.searchWord(word);
 
     if (entries.length === 0) {
-      res.sendStatus(204);
+      throw new ApiError(404, "Word not found");
     } else {
       res.status(200).json(entries);
     }
