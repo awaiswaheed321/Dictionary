@@ -10,6 +10,10 @@ import RequestLoggerMiddleware from "./middlewares/RequestLoggerMiddleware";
 import ResponseLoggerMiddleware from "./middlewares/ResponseLoggerMiddleware";
 import DictionaryRouter from "./route/DictionaryRouter";
 import SwaggerOptions from "./swagger/SwaggerOptions";
+import dotenv from "dotenv";
+
+dotenv.config();
+console.log(process.env);
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -26,7 +30,18 @@ const PORT = app.get("port");
 DB.initialize();
 
 app.use(limiter);
-app.use(cors());
+
+const frontendIP = process.env.FRONTEND_IP;
+if (frontendIP) {
+  app.use(
+    cors({
+      origin: frontendIP,
+    })
+  );
+} else {
+  app.use(cors());
+}
+
 app.use(express.json());
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
