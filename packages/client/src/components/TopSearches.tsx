@@ -97,7 +97,7 @@ export default function TopSearches(props: TopSearchesProps) {
           marginBottom: 1, // Optional: Add some space below the title section
         }}
       >
-        <Typography variant="h5" color="inherit">
+        <Typography variant="h5" color="inherit" sx={{ paddingTop: "10px" }}>
           Top Searches
         </Typography>
         <Box

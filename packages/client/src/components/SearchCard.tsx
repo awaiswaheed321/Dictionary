@@ -1,11 +1,11 @@
 import CloseIcon from "@mui/icons-material/Close";
 import {
-    Button,
-    Card,
-    CardActions,
-    CardContent,
-    IconButton,
-    Typography,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  IconButton,
+  Typography,
 } from "@mui/material";
 import { useState } from "react";
 import { SearchCardProps } from "../interfaces/Interfaces";
@@ -79,6 +79,21 @@ export default function WordCard({ entries, closeCard }: SearchCardProps) {
           Next
         </Button>
       </CardActions>
+
+      {/* Result Count */}
+      <Typography
+        sx={{
+          position: "absolute",
+          bottom: 8,
+          right: 8,
+          color: "grey",
+          fontSize: 12,
+        }}
+      >
+        {`${currentIndex + 1} of ${entries.length} ${
+          entries.length === 1 ? "result" : "results"
+        }`}
+      </Typography>
     </Card>
   );
 }
