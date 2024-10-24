@@ -13,7 +13,6 @@ import SwaggerOptions from "./swagger/SwaggerOptions";
 import dotenv from "dotenv";
 
 dotenv.config();
-console.log(process.env);
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
