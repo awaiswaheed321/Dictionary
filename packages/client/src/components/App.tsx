@@ -47,7 +47,6 @@ function App() {
         let msg = "";
         if (response.status === 400 || response.status === 404) {
           const body = await response.json();
-          console.log(body);
           msg = body.message;
         } else {
           msg = "Error in fetching response.";
@@ -56,7 +55,6 @@ function App() {
           message: msg,
           open: true,
         });
-        console.log(response);
       }
     } catch (error: unknown) {
       if (error instanceof Error) {
