@@ -37,7 +37,6 @@ export default function TopSearches(props: TopSearchesProps) {
         const data = await response.json();
         setCounts(data);
       } else {
-        console.log();
         props.setSnackProps({
           message: "Error in fetching data",
           open: true,
